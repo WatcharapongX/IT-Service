@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mahajak IT — Service Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['IBM Plex Sans Thai', 'sans-serif'],
+            display: ['Chakra Petch', 'IBM Plex Sans Thai', 'sans-serif'],
+            mono: ['IBM Plex Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg-blueprint: #0E2233;
+      --bg-blueprint-deep: #0A1B29;
+      --bg-paper: #F3F0E6;
+      --ink: #132A3A;
+      --ink-soft: #4C5F6B;
+      --line-blue: #5FA8D6;
+      --line-blue-dim: #2B4A5F;
+      --signal-orange: #E8622C;
+      --signal-orange-dim: #C8551F;
+      --paper-line: #DCD5BF;
+      --ok-green: #4C8C6B;
+    }
+    html { scroll-padding-top: 84px; }
+    body { font-family: 'IBM Plex Sans Thai', sans-serif; }
+    .font-display { font-family: 'Chakra Petch', 'IBM Plex Sans Thai', sans-serif; }
+    .font-mono { font-family: 'IBM Plex Mono', monospace; }
+
+    .blueprint-grid {
+      background-image:
+        linear-gradient(rgba(95,168,214,0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(95,168,214,0.12) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+    .paper-grid {
+      background-image: radial-gradient(rgba(19,42,58,0.08) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    .tag-card {
+      position: relative;
+      background: #ffffff;
+      border: 1px solid var(--paper-line);
+      border-left: 3px solid var(--accent, var(--line-blue));
+      clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 0 100%);
+    }
+    .tag-card-code {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--accent, var(--line-blue));
+      padding: 4px 9px 4px 4px;
+    }
+
+    .directory-plate {
+      border: 1px solid var(--line-blue-dim);
+      background: var(--bg-blueprint-deep);
+    }
+
+    a, button { transition: color .15s ease, background-color .15s ease, border-color .15s ease; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--signal-orange);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body class="bg-[var(--bg-paper)] text-[var(--ink)] antialiased selection:bg-[var(--signal-orange)] selection:text-white">
+
+  <!-- 1. TITLE BLOCK / NAVIGATION -->
+  <header class="sticky top-0 z-50">
+    <div class="h-[3px] w-full bg-[var(--signal-orange)]"></div>
+    <div class="bg-[var(--bg-blueprint)] text-[#DCE8F0] border-b border-[var(--line-blue-dim)]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 border border-[var(--line-blue)] flex items-center justify-center font-mono text-[var(--line-blue)] text-sm" style="clip-path: polygon(0 0, 100% 0, 100% 68%, 68% 100%, 0 100%);">
+            IT
+          </div>
+          <div class="leading-tight">
+            <div class="font-display font-semibold text-white text-lg tracking-tight">Mahajak IT</div>
+            <div class="text-[11px] font-mono text-[var(--line-blue)] mt-0.5">Service &amp; technology portal</div>
+          </div>
+        </div>
+
+        <nav class="hidden md:flex items-center gap-8 text-sm text-[#AEC4D2]">
+          <a href="#services" class="hover:text-[var(--signal-orange)]">บริการหลัก</a>
+          <a href="#forms" class="hover:text-[var(--signal-orange)]">แบบฟอร์มต่าง ๆ</a>
+          <a href="#knowledge" class="hover:text-[var(--signal-orange)]">คลังความรู้</a>
+          <a href="#contact" class="hover:text-[var(--signal-orange)]">ติดต่อเรา</a>
+        </nav>
+
+        <a href="#forms" class="px-5 py-2.5 bg-[var(--signal-orange)] hover:bg-[var(--signal-orange-dim)] text-white font-medium text-xs font-display">
+          เปิดแบบฟอร์มด่วน
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. HERO — left-aligned, blueprint console -->
+  <section class="relative bg-[var(--bg-blueprint)] text-white overflow-hidden border-b border-[var(--line-blue-dim)]">
+    <div class="absolute inset-0 blueprint-grid pointer-events-none"></div>
+    <svg class="absolute right-10 top-10 w-44 h-44 opacity-[0.12] hidden lg:block pointer-events-none" viewBox="0 0 200 200" fill="none">
+      <circle cx="100" cy="100" r="80" stroke="#5FA8D6" stroke-width="1"/>
+      <circle cx="100" cy="100" r="50" stroke="#5FA8D6" stroke-width="1"/>
+      <line x1="100" y1="0" x2="100" y2="200" stroke="#5FA8D6" stroke-width="1"/>
+      <line x1="0" y1="100" x2="200" y2="100" stroke="#5FA8D6" stroke-width="1"/>
+    </svg>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
+      <div class="max-w-2xl">
+
+        <h1 class="font-display font-semibold text-3xl sm:text-5xl mt-6 leading-[1.15] text-white">
+          ระบบบริการไอที<br class="hidden sm:block">สำหรับพนักงานมหาจักร
+        </h1>
+
+        <p class="mt-5 text-[#AEC4D2] text-base sm:text-lg leading-relaxed max-w-xl">
+          ระบบบริการเทคโนโลยีสารสนเทศสำหรับพนักงาน ดาวน์โหลดแบบฟอร์มได้อย่างสะดวกรวดเร็ว
+        </p>
+
+        
+    </div>
+  </section>
+
+  <!-- 3. SERVICE CATALOG -->
+  <section id="services" class="bg-[var(--bg-paper)] paper-grid py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-14">
+        <div class="text-xs font-mono text-[var(--signal-orange)] mb-2">Service catalog</div>
+        <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--ink)]">บริการไอทีหลักสำหรับพนักงาน</h2>
+        <p class="text-[var(--ink-soft)] text-sm sm:text-base mt-2">เลือกหมวดหมู่ที่ต้องการเข้าถึง</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-7">
+
+        <!-- Module: E-Forms -->
+        <div class="tag-card flex flex-col justify-between" style="--accent: var(--line-blue)">
+          <div class="tag-card-code font-mono">FORM</div>
+          <div class="p-7 pt-8">
+            <svg class="w-6 h-6 text-[var(--line-blue)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <h3 class="font-display font-semibold text-lg text-[var(--ink)] mt-4">แบบฟอร์มคำร้อง</h3>
+            <p class="text-[var(--ink-soft)] text-sm leading-relaxed mt-2">
+              ศูนย์รวมแบบฟอร์ม IT MDC &amp; MASS</p>
+          </div>
+          <a href="#forms" class="px-7 pb-6 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--ink)] hover:text-[var(--line-blue)]">
+            ดูแบบฟอร์มทั้งหมด
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Module: System -->
+        <div class="tag-card flex flex-col justify-between" style="--accent: var(--signal-orange)">
+          <div class="tag-card-code font-mono">E-form</div>
+          <div class="p-7 pt-8">
+            <svg class="w-6 h-6 text-[var(--signal-orange)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <h3 class="font-display font-semibold text-lg text-[var(--ink)] mt-4">ระบบ E-form</h3>
+            <p class="text-[var(--ink-soft)] text-sm leading-relaxed mt-2">
+               แอปพลิเคชั่นเบิกเงินสดย่อยและเงินทดรองจ่าย
+            </p>
+          </div>
+          <a href="https://eform.mahajak.co.th/login" target="_blank" class="px-7 pb-6 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--ink)] hover:text-[var(--signal-orange)]">
+            เปิด Applicaton
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. FORMS REGISTER -->
+  <section id="forms" class="bg-white border-y border-[var(--paper-line)] py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <div class="text-xs font-mono text-[var(--signal-orange)] mb-2">MDC &amp; MASS directory</div>
+          <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--ink)]">แบบฟอร์มอิเล็กทรอนิกส์</h2>
+        </div>
+        <p class="text-xs text-[var(--ink-soft)]">คลิกปุ่มเพื่อเปิดแบบฟอร์มเอกสารออนไลน์ได้ทันที</p>
+      </div>
+
+      <div class="border border-[var(--paper-line)] divide-y divide-[var(--paper-line)]" id="formsList">
+
+        <!-- Form Item 1 -->
+        <div class="form-item flex flex-col md:flex-row md:items-center gap-4 p-6 hover:bg-[var(--bg-paper)]/50">
+          <div class="font-mono text-xs text-[var(--signal-orange)] w-16 shrink-0">IT-01</div>
+          <div class="flex-1">
+            <h4 class="font-display font-medium text-[var(--ink)]">1. แบบฟอร์มขอใช้บริการ IT</h4>
+            <p class="text-sm text-[var(--ink-soft)] mt-1">สำหรับพนักงานที่ต้องการส่งคำขอใช้บริการ IT ต่าง ๆ</p>
+          </div>
+          <a href="https://drive.google.com/file/d/1JdsYUI6zMCySp3P1nxry1BcsDqL6X7Zy/view" target="_blank" class="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--ink)] text-[var(--ink)] text-sm font-medium hover:bg-[var(--ink)] hover:text-white">
+            เปิดแบบฟอร์ม
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+ <!-- 5. KNOWLEDGE HUB -->
+  <section id="knowledge" class="bg-[var(--bg-paper)] paper-grid py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <div class="text-xs font-mono text-[var(--signal-orange)] mb-2">Tech &amp; productivity</div>
+          <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--ink)]">ข่าวสารและเคล็ดลับน่ารู้</h2>
+        </div>
+        
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="videoList">
+
+        <!-- Video 1 -->
+        <div class="bg-white border border-[var(--paper-line)] overflow-hidden flex flex-col">
+          <div class="relative aspect-video w-full bg-[var(--bg-blueprint)] overflow-hidden video-embed" data-video-id="zL8Ravd1hIs">
+            <img src="https://img.youtube.com/vi/zL8Ravd1hIs/hqdefault.jpg" alt="ใช้ Google Calendar ให้งานเสร็จไวขึ้น" class="w-full h-full object-cover opacity-70">
+            <button type="button" onclick="playVideo(this)" aria-label="เล่นวิดีโอ" class="absolute inset-0 m-auto w-12 h-12 bg-[var(--signal-orange)] text-white flex items-center justify-center">
+              <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+          <div class="p-6">
+            <span class="text-[11px] font-mono text-[var(--line-blue)]">Google Workspace</span>
+            <h3 class="font-display font-semibold text-[var(--ink)] text-lg mt-1 mb-2">ใช้ Google Calendar ให้งานเสร็จไวขึ้น 9 ฟีเจอร์ลับ</h3>
+            <p class="text-xs text-[var(--ink-soft)] leading-relaxed">เทคนิคการบริหารเวลาและจัดตารางนัดหมายประชุมร่วมกับเพื่อนร่วมทีมอย่างเป็นระบบ</p>
+          </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="bg-white border border-[var(--paper-line)] overflow-hidden flex flex-col">
+          <div class="relative aspect-video w-full bg-[var(--bg-blueprint)] overflow-hidden video-embed" data-video-id="nJ8VarV2Gnc">
+            <img src="https://img.youtube.com/vi/nJ8VarV2Gnc/hqdefault.jpg" alt="NotebookLM ของดี Gemini ที่ทุกคนควรใช้" class="w-full h-full object-cover opacity-70">
+            <button type="button" onclick="playVideo(this)" aria-label="เล่นวิดีโอ" class="absolute inset-0 m-auto w-12 h-12 bg-[var(--signal-orange)] text-white flex items-center justify-center">
+              <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+          <div class="p-6">
+            <span class="text-[11px] font-mono text-[var(--line-blue)]">AI for productivity</span>
+            <h3 class="font-display font-semibold text-[var(--ink)] text-lg mt-1 mb-2">NotebookLM ของดี Gemini ที่ทุกคนควรใช้</h3>
+            <p class="text-xs text-[var(--ink-soft)] leading-relaxed">การใช้งาน AI ช่วยสรุปรายงาน สกัดเนื้อหาจากเอกสาร PDF และการถามตอบข้อมูลองค์กร</p>
+          </div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="bg-white border border-[var(--paper-line)] overflow-hidden flex flex-col">
+          <div class="relative aspect-video w-full bg-[var(--bg-blueprint)] overflow-hidden video-embed" data-video-id="Tft5CIcyP3g">
+            <img src="https://img.youtube.com/vi/Tft5CIcyP3g/hqdefault.jpg" alt="รู้ทันโจร กลโกงออนไลน์" class="w-full h-full object-cover opacity-70">
+            <button type="button" onclick="playVideo(this)" aria-label="เล่นวิดีโอ" class="absolute inset-0 m-auto w-12 h-12 bg-[var(--signal-orange)] text-white flex items-center justify-center">
+              <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+          <div class="p-6">
+            <span class="text-[11px] font-mono text-[var(--line-blue)]">Cyber Security</span>
+            <h3 class="font-display font-semibold text-[var(--ink)] text-lg mt-1 mb-2">รู้ทันโจร กลโกงออนไลน์</h3>
+            <p class="text-xs text-[var(--ink-soft)] leading-relaxed">ข้อสังเกตกลโกง SMS และอีเมลปลอม พร้อมวิธีป้องกันตัวจากมิจฉาชีพออนไลน์</p>
+          </div>
+        </div>
+
+        <!-- Video 4 -->
+        <div class="bg-white border border-[var(--paper-line)] overflow-hidden flex flex-col">
+          <div class="relative aspect-video w-full bg-[var(--bg-blueprint)] overflow-hidden video-embed" data-video-id="XI-rGLPq-CE">
+            <img src="https://img.youtube.com/vi/XI-rGLPq-CE/hqdefault.jpg" alt="เทคนิคจัดการ Gmail ขั้นเทพ" class="w-full h-full object-cover opacity-70">
+            <button type="button" onclick="playVideo(this)" aria-label="เล่นวิดีโอ" class="absolute inset-0 m-auto w-12 h-12 bg-[var(--signal-orange)] text-white flex items-center justify-center">
+              <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+          <div class="p-6">
+            <span class="text-[11px] font-mono text-[var(--line-blue)]">Google Workspace</span>
+            <h3 class="font-display font-semibold text-[var(--ink)] text-lg mt-1 mb-2">เทคนิคจัดการ Gmail ขั้นเทพ สร้าง Zero Inbox</h3>
+            <p class="text-xs text-[var(--ink-soft)] leading-relaxed">วิธีจัดระเบียบกล่องอีเมลให้เป็นนิสัย หาอีเมลเจอง่าย ไม่ตกหล่นงานสำคัญ</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CONTACT / DIRECTORY -->
+  <footer id="contact" class="bg-[var(--bg-blueprint)] text-white">
+    <div class="h-[3px] w-full bg-[var(--signal-orange)]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-8">
+
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-8 border-b border-[var(--line-blue-dim)]">
+        <div>
+          <div class="text-xs font-mono text-[var(--line-blue)] mb-2">Need immediate help</div>
+          <h2 class="font-display font-semibold text-2xl">ต้องการความช่วยเหลือด่วน หรือแจ้งเหตุฉุกเฉิน</h2>
+          <p class="text-[#AEC4D2] text-xs mt-1">ฝ่ายไอทีพร้อมให้บริการในวันทำการ จันทร์ - ศุกร์ (08:30 - 18:00 น.)</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+        <div class="directory-plate p-4">
+          <span class="text-[#8FA9B8] block text-[11px]">สำนักงานใหญ่นานา</span>
+          <span class="font-mono text-white text-sm mt-1 block">Ext. 1291 , 1391</span>
+        </div>
+        <div class="directory-plate p-4">
+          <span class="text-[#8FA9B8] block text-[11px]">สาขารามคำแหง</span>
+          <span class="font-mono text-white text-sm mt-1 block">Ext. 2191 , 2121</span>
+        </div>
+        <div class="directory-plate p-4">
+          <span class="text-[#8FA9B8] block text-[11px]">สาขา MASS Outlet</span>
+          <span class="font-mono text-white text-sm mt-1 block">Ext. 2120</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Search Filter Script -->
+  <script>
+    function searchItems() {
+      const query = document.getElementById('portalSearch').value.toLowerCase().trim();
+      const items = document.querySelectorAll('.form-item');
+
+      items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        if (text.includes(query)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
