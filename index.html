@@ -103,10 +103,10 @@
         </div>
 
         <nav class="hidden md:flex items-center gap-8 text-sm text-[#AEC4D2]">
-          <a href="#services" class="hover:text-[var(--signal-orange)]">บริการหลัก</a>
-          <a href="#forms" class="hover:text-[var(--signal-orange)]">แบบฟอร์มต่าง ๆ</a>
-          <a href="#knowledge" class="hover:text-[var(--signal-orange)]">คลังความรู้</a>
-          <a href="#contact" class="hover:text-[var(--signal-orange)]">ติดต่อเรา</a>
+          <a href="#services" onclick="return goToSection(event, 'services')" class="hover:text-[var(--signal-orange)]">บริการหลัก</a>
+          <a href="#forms" onclick="return goToSection(event, 'services')" class="hover:text-[var(--signal-orange)]">แบบฟอร์มต่าง ๆ</a>
+          <a href="#knowledge" onclick="return goToSection(event, 'services')" class="hover:text-[var(--signal-orange)]">คลังความรู้</a>
+          <a href="#contact" onclick="return goToSection(event, 'services')" class="hover:text-[var(--signal-orange)]">ติดต่อเรา</a>
         </nav>
 
         <a href="#forms" class="px-5 py-2.5 bg-[var(--signal-orange)] hover:bg-[var(--signal-orange-dim)] text-white font-medium text-xs font-display">
@@ -341,6 +341,12 @@
         }
       });
     }
+    function goToSection(e, id) {
+    if (e && e.preventDefault) { e.preventDefault(); }
+    var el = document.getElementById(id);
+    if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    return false;
+  }
   </script>
 
 </body>
